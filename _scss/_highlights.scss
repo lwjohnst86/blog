@@ -14,11 +14,17 @@
   word-break: break-all;
   word-wrap: break-word;
 }
+
+pre {
+    background-color: $lightGray;
+    padding: 10px 25px;
+    margin: 25px 0;
+}
  
 code {
-  font-family: 'Courier', monospace;
+  font-family: 'DejaVu Sans Mono', monospace;
   font-size: 14px;
-  color: #999
+  color: #4d4d4d
 }
  
 // Solarized Light Pygments 
