@@ -1,1 +1,18 @@
 * Timeline + Template for writing up posts
+  
+** Process for writing a posts in general
+   
+| Process                       | Timeline                        |
+|-------------------------------+---------------------------------|
+| Create outline                | 1 day                           |
+| Flesh it out into first draft | 5 days                          |
+| Make edits                    | Several days after draft, 1 day |
+| Publish                       | 1 day                           |
+
+** Timeline for writing certain posts
+   
+| Post                              | Completion |
+|-----------------------------------+------------|
+| Literature review                 | Jan. 31    |
+| One on git geared to PROMISE work | Feb. 15    |
+|                                   |            |
