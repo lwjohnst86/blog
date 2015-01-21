@@ -17,19 +17,19 @@ tags: [organization, git, database management, workflow]
 
 There are two basic rules:
 
-1. Only edit and work on files in the develop or `dev` branch.
-2. Use the `master` branch as the go-to for the "stable" version of
-   the dataset and to use for your analyses, but **not** to edit them.
+* Only edit and work on files in the develop or `dev` branch.
+* Use the `master` branch as the go-to for the "stable" version of
+  the dataset and to use for your analyses, but **not** to edit them.
 
 There are again two possibilities for following this rule:
 
-1. (Complex) Whenever data needs to be used, switch to the
-   `master` branch using `git checkout master` and afterwards switch
-   back to the `dev` branch (`git checkout dev`).
-2. (Simple) Create two folders in your dataset folder: a `master`
-   folder and a `dev` folder, where only the branches specific to
-   those folders are used.  This allows for a physical, tangible
-   separation between development and stable datasets.
+* (Complex) Whenever data needs to be used, switch to the `master`
+  branch using `git checkout master` and afterwards switch back to the
+  `dev` branch (`git checkout dev`).
+* (Simple) Create two folders in your dataset folder: a `master`
+  folder and a `dev` folder, where only the branches specific to those
+  folders are used.  This allows for a physical, tangible separation
+  between development and stable datasets.
 
 When files, data, or code *do* need to be worked on, work in the `dev`
 folder and commit to the `dev` branch.  To make sure that commits and
@@ -37,7 +37,7 @@ the version control history are clean, create a goal for what needs
 done and work toward that goal.  Once a goal has been created, there
 are two options for committing into the history:
 
-A. (Complex, though potentially cleaner) Create a temporary branch
+1. (Complex, though potentially cleaner) Create a temporary branch
    while in the `dev` branch specific to the goal.  This branch could
    either be named `temp` or a name relevant to the goal
    (eg. `cleaning` or `data-input`) using the command:
@@ -49,7 +49,7 @@ A. (Complex, though potentially cleaner) Create a temporary branch
 
     All work and commits will be specific to the goal.
 
-B. (Simple, though potentially messier) Add and commit to the `dev`
+2. (Simple, though potentially messier) Add and commit to the `dev`
    branch, making sure that the commits are as clean and focused on
    the goal as possible.  The only commands needed are:
 
@@ -60,7 +60,7 @@ Only files specific to the goal should be committed into the git
 history.  Given that caveat, make sure to commit often enough that the
 commits have a clear goal and a descriptive message.
 
-*Note*: If A) directly above is implemented (via a `temp` branch), the
+*Note*: If 1) directly above is implemented (via a `temp` branch), the
  commands to use to bring the changes into the `dev` branch would be:
 
     git checkout dev # You are on the cleaning, etc. branch
@@ -74,7 +74,7 @@ run:
 
     git branch -d temp # Or cleaning, etc.
 
-For either A) or B), whenever you run the command `git commit`, a text
+For either 1) or 2), whenever you run the command `git commit`, a text
 editor will open up, where you can type out a **detailed** commit
 message, using the format:
 
