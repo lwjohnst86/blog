@@ -1,15 +1,8 @@
 ---
+layout: post
 title:
 author: 
-date: 
 tags: []
-geometry: margin=1in
-fontsize: 12pt
-fontfamily: "DejaVu Serif"
-papersize: letterpaper
-header-includes:
-
-abstract: |
 
 ...
 
