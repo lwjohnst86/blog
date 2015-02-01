@@ -7,24 +7,24 @@ category: [Science, Statistics]
 tags: [JabRef, Docear, references, literature review, literature search]
 ...
 
-# Contents: #
+## Contents: ##
 
 * [Brief guide](#brief-step-by-step-guide)
 * [Detailed guide](#detailed-step-by-step-guide)
 
 # Why write this guide? #
 
-What's the point in writing this blog/guide on doing a literature
-search (aka. lit reviews)?  The main reason I have for writing this
-guide is rather selfish... I want to externalize my memory of my own
-work flow for doing literature searches.  There are many detailed
-steps involved in preparing for the literature search, using the
-academic search engines, extracting the articles of interest,
-downloading the pdf, inputting them into the reference manager,
-cleaning the references up in the manager, and storing notes as I read
-through these articles.  This is actually a lot more tedious and
-detailed than doing a "simple" literature search may
-seem... Especially if you want to be systematic about it.
+Why did I write this blog/guide on doing a literature search (aka. lit
+reviews)?  The main reason I have for writing this guide is rather
+selfish... I want to externalize my memory of my own workflow for
+doing literature searches.  There are many detailed steps involved in
+preparing for the literature search, using the academic search
+engines, extracting the articles of interest, downloading the pdf,
+inputting them into the reference manager, cleaning the references up
+in the manager, and storing notes as I read through these articles.
+This is actually a lot more tedious and detailed than doing a "simple"
+literature search may seem... Especially if you want to be systematic
+about it.
 
 Initially, I had worked out (over many trials and errors) a workflow
 for doing lit reviews.  But!  I didn't write the workflow down (I
@@ -141,7 +141,7 @@ I have structured this guide into two parts:
    location, preferably in the same parent directory as your research
    project for a manuscript.
 
-### B. JabRef --- Use your master `.bib` file, or create a new reference database ###
+## B. JabRef --- Use your master `.bib` file, or create a new reference database ##
 
 ### --- Article search and selection ###
 
