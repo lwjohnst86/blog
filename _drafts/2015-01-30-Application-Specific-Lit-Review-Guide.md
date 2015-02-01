@@ -2,7 +2,7 @@
 layout: post
 title: "An application specific step-by-step guide to doing a
     literature review/search"
-date: 2015-01-30
+date: 2015-02-01
 category: [Science, Statistics]
 tags: [JabRef, Docear, references, literature review, literature search]
 ...
@@ -28,7 +28,7 @@ seem... Especially if you want to be systematic about it.
 
 Initially, I had worked out (over many trials and errors) a workflow
 for doing lit reviews.  But!  I didn't write the workflow down (I
-know, tsk tsk)...  And because I don't do lit reviews *that*
+know, tsk tsk)...  And because I don't do lit reviews/searches *that*
 frequently, I forgot how I set up my workflow from the last time.
 Which is why I decided that I needed to write it down.  This blog post
 is an expanded and elaborated explanation of my workflow.
@@ -127,7 +127,7 @@ I have structured this guide into two parts:
 
 # Detailed step-by-step guide #
 
-## A. Firefox (or other browser)
+## A. Firefox (or other browser) ##
 
 1. Develop *a priori* search terms for searching PubMed or other
    article search engine.
@@ -141,9 +141,9 @@ I have structured this guide into two parts:
    location, preferably in the same parent directory as your research
    project for a manuscript.
 
-## B. JabRef --- Use your master `.bib` file, or create a new reference database
+### B. JabRef --- Use your master `.bib` file, or create a new reference database ###
 
-### --- Article search and selection
+### --- Article search and selection ###
 
 1. Paste the search terms developed above into the Web Search
    plugin/utility (usually on the sidepane), using Medline as the
@@ -154,32 +154,76 @@ I have structured this guide into two parts:
    the same directory as your research project.
        - Sometimes, the Web Search doesn't like some of the search
          terms and just doesn't search using them.  This can result in
-         differences in the number of hits.
+         differences in the number of hits.  In this case, search
+         using PubMed (more reliable) and output the search results
+         into XML via the "Send to: -> File -> XML" option below/near
+         the "Search" and "Filters:" buttons.  Import the XML into
+         JabRef using `Ctrl-I`.
 4. Sort results by year.
 5. Search through articles, selecting (checking the check box) only
    relevant onces to be imported; check for duplicates.
-6. Import into current database.
+6. Import into the current database (or a new one).
 
-### --- Cleaning imported files
+### --- Cleaning the imported files ###
 
-1. Select all imported references, go to the `Edit` menu at the top,
-   and click `Manage keywords`.
-2. Add appropriate keywords, e.g. topics that the articles represent
-   (e.g. Diabetes), relevant project that the articles are linked to
-   (e.g. course assignment or manuscript), or any other descriptive
-   keywords.
-3. Under the `Tools` menu, click `Clean up entries`.
+1. Select all the imported references, go to the `Edit` menu at the
+   top, and click `Manage keywords`.
+2. Add appropriate keywords, for instance topics that the articles
+   represent (e.g. Diabetes), the relevant project that the articles
+   are linked to (e.g. course assignment or manuscript), or any other
+   descriptive keywords.
+3. Under the `Tools` menu, click `Clean up entries`.  Sometimes the
+   articles have been messily imported and this will clean it up.
 4. In the `Search` menu, click `Set/clear/rename fields`; type in
-   "Month, Note" at the top of the dialog box, select the `Clear
-   fields` option, and click OK.
+   `Month, Note, File, Institution` at the top of the dialog box,
+   select the `Clear fields` option, and click OK.
 
-### --- Marking by importance and downloading pdf
+### --- Marking by importance and downloading pdf ###
 
-1. Search through articles and read up
+1. Search through articles and based on their title and abstract, mark
+   (`Ctrl-M` in JabRef) the articles according to how relevant the
+   article is and how soon the article should be read.  The darker the
+   colour, the more relevant it is.
+2. Use [Christoph Lehner's excellent plugin](http://www.lhnr.de/ext/)
+   to download the pdf *from within JabRef*, rename the file, and save
+   it in the pdf directory set in the JabRef settings automatically,
+   all by just clicking the `Journal pdf` button!
+       - Sometimes journals are behind a paywall (damn closed access),
+         so if you have institutional access, just download the pdf
+         manually, rename it to match the BibKey, and move it into the
+         `articles/` folder.
+3. Once all your relevant pdfs have been downloaded, run `Synchronize
+   file links` in the `Search` Menu, then `Clean up entries` in the
+   `Tools` menu.
+4. Confirm that the rename worked.  If not, it is likely a file name
+   issue, so fix that and do the above again.
+5. Delete the `File` field in the selected articles using the
+   `Set/clear/rename fields` options in the `Search` menu to fix the
+   file link in the articles.  Sometimes JabRef doesn't rename the
+   file link, but does rename the file itself.
+6. Re-run `Synchronize file links`.
 
+## B. Docear --- Use your main mindmap to import new pdf files ##
 
+1. In Docear's main `literature_and_annotations.mm` file, use the
+   "Reload monitored folder" button to search the `articles/` folder
+   as set in the options and import new pdfs.
+2. Move the imported articles into a branch that is relevant to the
+   project.  At this point, you have a few options.  One is to use the
+   main mindmap to import the annotations into, or another option is
+   to make a new mindmap specific to your project, move the articles
+   over into that mindmap and read them from there (this is the option
+   I use).
+3. Read the articles, make comments, highlight text and so on.  Once
+   done, right-click the article, select `PDF -> Import all
+   annotations`.
+4. Move the read article into a new branch called `Read`, or something
+   similar.
+5. Repeat until all articles are read.
 
+# Final comments #
 
-
-
+That is all for now. I know this is fairly detailed, but it helps me
+remember my workflow and I hope that in some way helps you, the
+reader, to make your own workflow!
 
