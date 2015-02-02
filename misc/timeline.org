@@ -11,8 +11,8 @@
 
 ** Timeline for writing certain posts
    
-| Post                              | Completion |
-|-----------------------------------+------------|
-| Literature review                 | Jan. 31    |
-| One on git geared to PROMISE work | Feb. 15    |
-|                                   |            |
+| Post                              | Completion | Finished? |
+|-----------------------------------+------------+-----------|
+| Literature review                 | Jan. 31    | Y         |
+| One on git geared to PROMISE work | Feb. 15    |           |
+|                                   |            |           |
