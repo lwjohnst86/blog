@@ -24,7 +24,6 @@ BLOG IDEAS -*- mode: org -*-
    - Knitr
    - arguments in favour of doing as much as possible in plain text 
  
-
 ** Stats software
   - Macro facility SAS
   - ODS output SAS
@@ -33,6 +32,9 @@ BLOG IDEAS -*- mode: org -*-
   - Data management apps/tools
 
 ** Stats techniques
+  - Explaining the basics of stats using plots, equations, breaking
+    them down piece by piece (ie. SD, t-test, correlation,
+    covariance, ANOVA, etc.)
   - Why trad methods for longit analysis don't work (R)
   - Stat methods (diagrams, pros/cons)
   - Show stats formula, work thro it + code
@@ -64,6 +66,10 @@ BLOG IDEAS -*- mode: org -*-
   - Make a newspaper article series on science? I can start it in my blog
   - Fluoridation and health
   - Series on how science works, and its current difficulties.
+  - Concept of "code sprints" or "hackathons" or some other for use
+    in analysis, scientific coding, or all around research work.
+    Or for getting new students up to speed on the internals of doing
+    research in my lab/group.
 
 * Life
 ** Government
@@ -77,7 +83,9 @@ BLOG IDEAS -*- mode: org -*-
 ** Misc
   - Doc github pages setup
   - How to bring world together to cooperate and get shit done!
-  - A sci fi book series that discusses what an optimal government should look like, based on psychology, sociology, evolution, and evidence.
+  - A sci fi book series that discusses what an optimal government
+    should look like, based on psychology, sociology, evolution, and
+    evidence.
     
 * Notes:
 Whenever I critique or challenge something, include also a potential solution.
