@@ -41,7 +41,8 @@ tags: []
 
 ## From dataset ##
 
-    Extract relevant variables from master ds
+    Extract relevant variables from master ds and save as a dataset in
+    local research project folder.
     run univariate and bivariate analyses + exploratory plots
         If new insights come up here, may need to revise question/do further lit search.
 
@@ -61,3 +62,15 @@ tags: []
 
 ## Based on findings, refine journal to submit to. ##
 
+-----
+
+1. Search lit to refine question and understand biology and covariates
+2. Develop concept map (DAG) to inform direction of analysis and
+   covariates
+3. Conduct EDA, using knitr to create reports on your observations
+4. Develop cross-validation sets (?)
+5. Model selection at training set
+6. Make prediction on what training set will reveal
+7. Compare to validation/test set
+8. Make conclusion on strength of statistical model for predicting
+   outcome.

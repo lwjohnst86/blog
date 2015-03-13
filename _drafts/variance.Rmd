@@ -1,0 +1,82 @@
+---  
+title: Variance
+tags:
+    - Statistics
+    - Variance
+    - R Markdown
+    - R
+    - Practice worksheet
+category:
+    - Statistics
+...
+
+# Load in the `hf` dataset and check the variables #
+
+```{r libraries, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+
+library(tidyr) ## To wrangle the data
+library(ggplot2) ## For the plots
+library(dplyr) ## To use the %>% operator (other functions)
+
+```
+
+```{r loadData}
+
+ds <- read.xls("hf.xls", sheet = 1, header = TRUE)
+
+## Create a new variable with time as a factor (discrete).
+ds$f.time <- factor(ds$time)
+
+## Make placebo the reference/first group.
+ds$treatment <- relevel(ds$treatment, ref = 'Placebo')
+
+## List variables in dataset.
+names(ds)
+
+x <- airquality$Wind
+y <- airquality$Temp
+    
+
+cor(x, y)
+cov(x, y) / (sd(x) * sd(y))
+
+cor(x, x)
+cov(x, x) / (sd(x) * sd(x))
+
+cov(x, x)
+var(x)
+sd(x) * sd(x)
+
+qplot(x, y)
+
+lm(y ~ x) %>% coef()
+b <- cor(x, y) * (sd(y) / sd(x))
+int <- mean(y) - (b * mean(x))
+
+s.x <- scale(x)
+s.y <- scale(y)
+cor(s.x, s.y)
+lm(s.y ~ s.x) %>% coef()
+
+airquality
+
+x1 <- airquality %>% filter(Month == 5) %>% select(Wind) %>% unlist %>% head(10)
+x2 <- airquality %>% filter(Month == 9) %>% select(Wind) %>% unlist %>% head(10)
+
+
+t.test(x1, x2)
+lm(x1 ~ x2)
+
+
+```
+
+
+```{r knit, echo = FALSE, eval = FALSE}
+
+## Create the assignment pdf
+library(knitr)
+opts_chunk$set(dev = "pdf")
+knit("assignment1.Rmd")
+pandoc("assignment1.md", format = "latex")
+
+```
