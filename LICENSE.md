@@ -1,5 +1,5 @@
 
-Blog content: Copyright (c) 2014 Luke W. Johnston (CC-BY)
+Blog content: Copyright (c) 2015 Luke W. Johnston (CC-BY)
 Jekyll-Now License: Copyright (c) 2014 Barry Clark (MIT, see bottom)
 
 ## creative commons

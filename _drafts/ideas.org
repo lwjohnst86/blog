@@ -1,0 +1,91 @@
+BLOG IDEAS -*- mode: org -*-
+
+* Statistics
+** Data management
+   - Learning to use SQLite + RSQLite
+
+** Steps to making a organized data repository
+   - What to include in repo
+   - Describe why I started making the prodigen
+
+** Software 
+   - Commonly used commands in git in my workflow (example workflow)
+   - Org-mode + Clocking + TODO
+   - Presentations using Rmd, Knitr, pandoc + beamer
+   - makefile: Why they should be used more often! (link with shell
+     blog) + use examples (link to prodigen)
+   - How I incorporate bash shell scripts into my workflow.
+
+** Reproducible research
+   - How I learned to love + use knitr/Rmd (esp with getting started)
+   - Principles of clean and organized folders
+   - Reproducible research
+   - Clean and organized data processing
+   - Knitr
+   - arguments in favour of doing as much as possible in plain text 
+ 
+** Stats software
+  - Macro facility SAS
+  - ODS output SAS
+  - Functions R
+  - Plots R
+  - Data management apps/tools
+
+** Stats techniques
+  - Explaining the basics of stats using plots, equations, breaking
+    them down piece by piece (ie. SD, t-test, correlation,
+    covariance, ANOVA, etc.)
+  - Why trad methods for longit analysis don't work (R)
+  - Stat methods (diagrams, pros/cons)
+  - Show stats formula, work thro it + code
+  - Working thro stats book/MOOC
+  - Explain DAG
+  - Explain PCA
+  - Explain GEE
+  - Work thro process of how they went from OLS to LME/GEE
+  - Compare GEE with mixed (Rmd)
+  - How to interpret the results of longit analysis
+
+** Research workflow
+
+* Science
+** Evolution debate
+  - Explain and detail process of evolution
+  - Provide a list of links to sites that highlight evolution.
+
+** Physiology
+  - Pathophysiology of diabetes
+    - Fatty acids
+
+** General Science
+  - How should peer-review look like in the future of science?  Should
+    there be selected reviewers or should the manuscript be put up on an
+    archive to be reviewed by scientists there?
+  - Should science be open? How would open science/research look
+    like and would it be effective?
+  - Make a newspaper article series on science? I can start it in my blog
+  - Fluoridation and health
+  - Series on how science works, and its current difficulties.
+  - Concept of "code sprints" or "hackathons" or some other for use
+    in analysis, scientific coding, or all around research work.
+    Or for getting new students up to speed on the internals of doing
+    research in my lab/group.
+
+* Life
+** Government
+  - Types of govts and how to improve it
+  - Improving democracy
+  - Incorporating science into democracy
+  - Should the gov't discourage religion? Via eliminating tax benefit
+    and easy charity status?
+** Religion
+  - Piece on why I am an atheist
+** Misc
+  - Doc github pages setup
+  - How to bring world together to cooperate and get shit done!
+  - A sci fi book series that discusses what an optimal government
+    should look like, based on psychology, sociology, evolution, and
+    evidence.
+    
+* Notes:
+Whenever I critique or challenge something, include also a potential solution.
