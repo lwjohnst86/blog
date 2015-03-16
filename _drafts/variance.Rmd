@@ -12,33 +12,68 @@ category:
 
 # Load in the `hf` dataset and check the variables #
 
-```{r libraries, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r libraries}
 
-library(tidyr) ## To wrangle the data
 library(ggplot2) ## For the plots
 library(dplyr) ## To use the %>% operator (other functions)
 
 ```
 
-```{r loadData}
+So let's assign the data to `x` and `y` variables.
 
-ds <- read.xls("hf.xls", sheet = 1, header = TRUE)
-
-## Create a new variable with time as a factor (discrete).
-ds$f.time <- factor(ds$time)
-
-## Make placebo the reference/first group.
-ds$treatment <- relevel(ds$treatment, ref = 'Placebo')
-
-## List variables in dataset.
-names(ds)
+```{r assignData}
 
 x <- airquality$Wind
 y <- airquality$Temp
-    
+
+aq <- airquality %>%
+    tbl_df()
+
+```
+
+First, the base statistic to determine spread, or variance, is of
+course the variance statistic:
+
+$$ \sigma^2 = var(x) = \frac{\sum\limit_{i=1}^{n} (x - \bar{x})^2}{n-1} $$
+
+In R, this would be:
+
+```{r var}
+## Raw formula
+sum(((x - mean(x)) ^ 2)) / (length(x) - 1)
+
+## ... or in R
+var(x)
+```
+
+Unlike the standard deviation which I will talk about in a bit, the
+variance is difficult to visualize as it doesn't directly represent
+the spread of the data.  It merely indicates to what degree it is
+spread.  Nonetheless, we can plot the distribution of the data to get
+a sense of the spread.
+
+```{r densityPlot}
+qplot(x, geom = 'density', main = 'Visualizing the spread.')
+```
+
+```{r sd}
+
+ggplot(aq, aes(x = Wind, y = 1:length(Wind))) +
+    geom_point() +
+    geom_rect
+
+ggplot() + geom_density(aes(x)) + geom_vline(aes(xintercept = mean(x))) +
+    geom_point
+?geom_rect
+
+ggplot() + geom_area(aes(x = x, ymin = mean(x) - sd(x), ymax = mean(x) + sd(x)))
 
 cor(x, y)
 cov(x, y) / (sd(x) * sd(y))
+cov(x, y) / (sqrt(var(x)) * sqrt(var(y)))
+
+?ggplot
+
 
 cor(x, x)
 cov(x, x) / (sd(x) * sd(x))
@@ -51,21 +86,18 @@ qplot(x, y)
 
 lm(y ~ x) %>% coef()
 b <- cor(x, y) * (sd(y) / sd(x))
+print(b)
 int <- mean(y) - (b * mean(x))
+print(int)
 
 s.x <- scale(x)
 s.y <- scale(y)
 cor(s.x, s.y)
-lm(s.y ~ s.x) %>% coef()
+cor(s.x, s.y) * (sd(s.y) / sd(s.x))
+coef(lm(s.y ~ s.x))[2] %>% signif(7)
 
-airquality
+qplot(s.x, s.y)
 
-x1 <- airquality %>% filter(Month == 5) %>% select(Wind) %>% unlist %>% head(10)
-x2 <- airquality %>% filter(Month == 9) %>% select(Wind) %>% unlist %>% head(10)
-
-
-t.test(x1, x2)
-lm(x1 ~ x2)
 
 
 ```
