@@ -11,15 +11,13 @@ commands :
 
 ##-------------------------------------------------------------------
 
-## update_site : Merge posts/edits from the `writing` branch into master
-update_site :
-	git checkout master && \
-	git merge --no-commit --no-ff writing && \
-	rm -rf misc/
+## knit_rmd   : Generate a post from a .Rmd file
+knit_rmd :
+	./knitpost.R
 
 ## build_local : Build the site locally to test out before going live
 build_local :
-	jekyll serve
+	jekyll serve --watch --draft
 
 # Not sure about this one
 update_jekyll :
