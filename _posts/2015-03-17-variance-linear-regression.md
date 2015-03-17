@@ -54,13 +54,13 @@ The main goal here is to show how variance works in linear regression
 and how easy a simple linear regression is calculate.  To get started,
 the common formula used to denote a linear regression is:
 
-\\[ Y = \alpha + X\beta + \varepsilon \\]
+$$ Y = \alpha + X\beta + \varepsilon $$
 
 Another way to write it is:
 
 $$ y = m + bx + e $$
 
-Where *m* is the intercept and \\(b\\) is the slope.  The way the slope is
+Where \\(m\\) is the intercept and \\(b\\) is the slope.  The way the slope is
 calculated is by
 [*least squares*](http://en.wikipedia.org/wiki/Least_squares), which
 minimizes the sum of the squared residuals (or error terms).  Bit by
@@ -71,15 +71,15 @@ variance.
 
 The basic foundation to analyzing data and making comparisons or
 making predictions essentially use how spread out the data are from
-one another to make a conclusion.  So the formula for variance of $x$
+one another to make a conclusion.  So the formula for variance of \\(x\\)
 is:
 
 $$ \sigma_{x}^2 = var(x) = \frac{\sum_{i=1}^{n} (x - \bar{x})^2}{n-1} $$
 
-If you take a look at the formula, you can see that as values of $x$
+If you take a look at the formula, you can see that as values of \\(x\\)
 get further and further from the mean \\(\bar{x}\\), the square will make
 them larger and always positive.  So, the more spread out the data is
-from the mean, the higher the value of $\sigma_{x}^2$, or the
+from the mean, the higher the value of \\(\sigma_{x}^2\\), or the
 variance, is.  If we code this in R, this would be:
 
 
@@ -137,7 +137,7 @@ $$ \sigma_x = \sqrt{\frac{\sum_{i=1}^{n}(x - \bar{x})^2}{n-1}} $$
 
 Take some time to look at this formula and to understand it.  You can
 see that because of the square root and the associated interpretation
-that this $\sigma_x$ value operates about the mean, there is an
+that this \\(\sigma_x\\) value operates about the mean, there is an
 assumption that the data is spread equally about the mean.  Hence this
 is why the standard deviation assumes a normal (or
 [Gaussian](http://en.wikipedia.org/wiki/Gaussian_function))
@@ -205,17 +205,17 @@ another term:
 $$ cov(x, y) = \sum_{i=1}^{n}\frac{(x_i - \bar{x}) (y_i - \bar{y})} {n - 1} $$
 
 While this formula appears similar to the variance, the addition of
-the $y$ term changes the interpretation quite substantially.  Take a
+the \\(y\\) term changes the interpretation quite substantially.  Take a
 look at the formula.  The value of the covariance depends upon how
-related the spread of $x$ and $y$ are to each other, and unlike the
+related the spread of \\(x\\) and \\(y\\) are to each other, and unlike the
 variance, there can be negative covariance.  So:
 
-* If $x$ tends to be more *positively* spread from the mean and at the
-  same time $y$ tends to be more *negatively* spread from the mean,
+* If \\(x\\) tends to be more *positively* spread from the mean and at the
+  same time \\(y\\) tends to be more *negatively* spread from the mean,
   this gives the covariance a negative value (a positive times a
-  negative equals a negative).  Likewise, a *positive* $x$ and a
-  *positive* $y$ will give *positive* covariance.
-* If $x$ and $y$ tend to spread far from the mean *together*, this gives
+  negative equals a negative).  Likewise, a *positive* \\(x\\) and a
+  *positive* \\(y\\) will give *positive* covariance.
+* If \\(x\\) and \\(y\\) tend to spread far from the mean *together*, this gives
   a larger covariance.  As they spread less from the mean *together*,
   covariance will be lower.
 
@@ -225,10 +225,10 @@ change in another variable.  So, a covariance of zero means that there
 is no relationship between the two variables.
 
 Again, look at the formula.  In any given observation (or row), either
-an $x$ or a $y$ is missing, the formula doesn't work.  So an
+an \\(x\\) or a \\(y\\) is missing, the formula doesn't work.  So an
 assumption of the covariance is that the data be complete cases (no
 missingness).  Also, because the covariance values depend upon the
-size of the values in $x$ and $y$, there is no 'standardized' way of
+size of the values in \\(x\\) and \\(y\\), there is no 'standardized' way of
 comparing across different variables.
 
 The R code for calculating the covariance is:
@@ -258,7 +258,7 @@ cov(x, y)
 ## [1] -15.27214
 {% endhighlight %}
 
-In fact, if we substitute the $y$ for $x$ in the formula above, we get
+In fact, if we substitute the \\(y\\) for \\(x\\) in the formula above, we get
 the variance!  And computed in R:
 
 
@@ -311,7 +311,7 @@ $$  \rho_{x,y} = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1
 
 Take a good look at the formula.  Does something look familiar?  If
 you notice, the top part is the same as the covariance and the bottom
-part has two formulas for the variance (of both $x$ and $y$).  So, if
+part has two formulas for the variance (of both \\(x\\) and \\(y\\)).  So, if
 I re-write this formula to simplify it:
 
 $$ \rho_{x,y} = corr(x, y) = \frac{cov(x, y)} {\sqrt{var(x) * var(y)}} $$
@@ -383,7 +383,7 @@ linear regression case can be calculated as:
 $$ \beta = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2} $$
 
 If you'll notice, the formula on the top is the covariance and on the
-bottom is the variance of $x$.  So, we can simplify:
+bottom is the variance of \\(x\\).  So, we can simplify:
 
 $$ \beta = \frac{cov(x, y)} {var(x)} = \frac{cov(x,y)}{sd(x) * sd(x)}$$
 
@@ -397,16 +397,16 @@ of the correlation in linear regression:
 
 $$ \beta = \rho_{x,y} \times \frac{\sigma_y}{\sigma_x} $$
 
-Then, $\alpha$ can be calculated by simply solving the equation
-$\alpha = \bar y - \beta \bar x$.
+Then, \\(\alpha\\) can be calculated by simply solving the equation
+\\(\alpha = \bar y - \beta \bar x\\).
 
 Knowing the formulas for how these statistics are calculated can give
 you some insight into why they have the assumptions that they do.  For
 instance, since the least squares approach minimizes the sum of the
 squared *residuals* (ie: the variance of the residuals), this suggests
 that the residuals should be approximately normally distributed.  But
-because the residuals are calculated based on the covariance of $x$
-and $y$, this suggests that the covariance should be normally
+because the residuals are calculated based on the covariance of \\(x\\)
+and \\(y\\), this suggests that the covariance should be normally
 distributed... and not the univariate distributions (a common
 misconception)!
 
@@ -505,7 +505,7 @@ qplot(x, y, geom = c('point', 'smooth'), method = 'lm')
 ![Linear regression line](/images/2015-03-17-variance-linear-regression/regPlot-1.png) 
 
 A nifty thing about linear regression and it's use of the correlation
-is that based on the formula, when $x$ and $y$ are scaled (centered
+is that based on the formula, when \\(x\\) and \\(y\\) are scaled (centered
 and standardized) with a mean of 0 and a standard deviation of 1, the
 correlation coefficient **is** the linear regression estimate!  That's
 because, looking at the formula above, the `sd(x)` = 1 and `sd(y)` =
