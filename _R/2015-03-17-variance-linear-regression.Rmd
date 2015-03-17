@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Understanding variance and linear regression
 tags:
     - Statistics
