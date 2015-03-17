@@ -202,7 +202,7 @@ degree to which the spread between two variables is related or not.
 The formula is similar to the variance, except for the additional of
 another term:
 
-$$ cov(x, y) = \sums_{i=1}^{n}\frac{(x_i - \bar{x}) (y_i - \bar{y})} {n - 1} $$
+$$ cov(x, y) = \sum_{i=1}^{n}\frac{(x_i - \bar{x}) (y_i - \bar{y})} {n - 1} $$
 
 While this formula appears similar to the variance, the addition of
 the $y$ term changes the interpretation quite substantially.  Take a
@@ -307,7 +307,7 @@ correlation.  There are other types of correlations you can use, like
 Spearman, but I won't get into that.  The formula for the Pearson
 correlation is:
 
-$$  \rho_{x,y} = \frac{\sums_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sums_{i=1}^n(x_i-\bar{x})^2\sums_{i=1}^n(y_i-\bar{y})^2}} $$
+$$  \rho_{x,y} = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}} $$
 
 Take a good look at the formula.  Does something look familiar?  If
 you notice, the top part is the same as the covariance and the bottom
@@ -380,7 +380,7 @@ $$ Y = \alpha + X\beta + \varepsilon $$
 Based on least squares estimation, the line of best fit in the simple
 linear regression case can be calculated as:
 
-$$ \beta = \frac{\sums_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sums_{i=1}^n(x_i-\bar{x})^2} $$
+$$ \beta = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2} $$
 
 If you'll notice, the formula on the top is the covariance and on the
 bottom is the variance of $x$.  So, we can simplify:
