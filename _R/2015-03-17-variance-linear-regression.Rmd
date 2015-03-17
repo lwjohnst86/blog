@@ -56,13 +56,13 @@ The main goal here is to show how variance works in linear regression
 and how easy a simple linear regression is calculate.  To get started,
 the common formula used to denote a linear regression is:
 
-\[ Y = \alpha + X\beta + \varepsilon \]
+\\[ Y = \alpha + X\beta + \varepsilon \\]
 
 Another way to write it is:
 
 $$ y = m + bx + e $$
 
-Where *m* is the intercept and \(b\) is the slope.  The way the slope is
+Where *m* is the intercept and \\(b\\) is the slope.  The way the slope is
 calculated is by
 [*least squares*](http://en.wikipedia.org/wiki/Least_squares), which
 minimizes the sum of the squared residuals (or error terms).  Bit by
@@ -76,10 +76,10 @@ making predictions essentially use how spread out the data are from
 one another to make a conclusion.  So the formula for variance of $x$
 is:
 
-\[ \sigma_{x}^2 = var(x) = \frac{\sum_{i=1}^{n} (x - \bar{x})^2}{n-1} \]
+$$ \sigma_{x}^2 = var(x) = \frac{\sum_{i=1}^{n} (x - \bar{x})^2}{n-1} $$
 
 If you take a look at the formula, you can see that as values of $x$
-get further and further from the mean $\bar{x}$, the square will make
+get further and further from the mean \\(\bar{x}\\), the square will make
 them larger and always positive.  So, the more spread out the data is
 from the mean, the higher the value of $\sigma_{x}^2$, or the
 variance, is.  If we code this in R, this would be:
