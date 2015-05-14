@@ -6,7 +6,8 @@ category: [Science, Statistics]
 tags: [organization, git, database management, workflow]
 ...
 
-*Updated on 2015-01-21*
+*Updated on 2015-01-21.  I've written an updated (2015-03-13) version
+[here](/git-workflow-databases-updated/)*
 
 > These are my thoughts on a potential Git workflow for research
 > databases, in particular for my own PhD dataset.  I'm still in the
