@@ -7,8 +7,9 @@ tags:
     - R Markdown
     - R
     - Practice worksheet
-category:
+categories:
     - Statistics
+    - Coding
 ...
 
 > I've written this blog because I want to get a better understanding

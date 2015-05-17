@@ -1,9 +1,15 @@
 ---
 layout: post
 title: "Staying sane: Rules on consistent file naming practices"
-date: 2014-12-12
-category: [Science, Statistics, Life]
-tags: [organization, computer management, time management, sanity]
+tags:
+    - organization
+    - computer management
+    - time management
+    - sanity
+categories:
+    - Science
+    - Statistics
+    - Life
 ...
 
 One important component of maintaining order and sanity with your

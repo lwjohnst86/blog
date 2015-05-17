@@ -2,9 +2,15 @@
 layout: post
 title: "An application specific step-by-step guide to doing a
     literature review/search"
-date: 2015-02-01
-category: [Science, Statistics]
-tags: [JabRef, Docear, references, literature review, literature search]
+tags:
+    - JabRef
+    - Docear
+    - references
+    - literature review
+    - literature search
+categories:
+    - Science
+    - Statistics
 ...
 
 ## Contents: ##

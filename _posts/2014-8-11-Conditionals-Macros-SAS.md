@@ -1,8 +1,16 @@
 ---
 layout: post
 title: "Using more advanced macro techniques in SAS: Conditionals"
-category: [statistics, coding]
-tags: [analysis, advanced, SAS, conditionals, if-then, macros]
+tags:
+    - analysis
+    - advanced
+    - SAS
+    - conditionals
+    - if-then
+    - macros
+categories:
+    - Statistics
+    - Coding
 ... 
 
 In a previous [post](http://www.sciencestatisticsandlife.com/2014/07/18/an-introduction-to-creating-your-own-macro-in-sas/), I went over a step-by-step introduction to starting your own macro.  For this post, I want to go over some more advanced features of the macro facility in SAS.  There are two features in particular that are very useful to know (at least in my opinion) for developing more useful and powerful personalized macros.  These are:

@@ -1,11 +1,14 @@
 ---
 layout: post
 title: "Git workflow for research databases: Updated"
-date: 2015-05-13
+tags:
+    - organization
+    - git
+    - database management
+    - workflow
 categories:
     - Science
     - Statistics
-tag: [organization, git, database management, workflow]
 ...
 
 After having submitted pull requests to the

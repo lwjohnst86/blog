@@ -1,8 +1,16 @@
 ---
 layout: post
 title: Customizing your SAS output using ODS
-category: [statistics, coding]
-tags: [analysis, advanced, SAS, ODS output, customize output, tutorial]
+tags:
+    - analysis
+    - advanced
+    - SAS
+    - ODS output
+    - customize output
+    - tutorial
+categories:
+    - Statistics
+    - Coding
 ...
 
 ## ... or how to shift through the massive SAS textual deluge ##

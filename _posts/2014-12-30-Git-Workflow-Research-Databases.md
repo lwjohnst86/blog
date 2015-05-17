@@ -1,9 +1,14 @@
 ---
 layout: post
 title: "A potential Git workflow for research databases"
-date: 2014-12-30
-category: [Science, Statistics]
-tags: [organization, git, database management, workflow]
+tags:
+    - organization
+    - git
+    - database management
+    - workflow
+categories:
+    - Science
+    - Statistics
 ...
 
 *Updated on 2015-01-21.  I've written an updated (2015-03-13) version

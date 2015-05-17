@@ -1,8 +1,16 @@
 ---
 layout: post
 title: An introduction to creating your own macro in SAS
-category: [statistics, coding]
-tags: [analysis, beginner, coding, macro, SAS, tutorial]
+tags:
+    - analysis
+    - beginner
+    - coding
+    - macro
+    - SAS
+    - tutorial
+categories:
+    - Statistics
+    - Coding
 ...
 
 Ever copy and paste a proc statement or data step? Or wish to do some more complex tasks, either only once or multiple times? Well in SAS, there is a facility that allows you to create these snippets of code that can be reused or that make doing complex tasks easier and more maintainable. This facility is called macros.
