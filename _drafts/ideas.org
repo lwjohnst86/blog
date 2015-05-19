@@ -42,6 +42,7 @@ BLOG IDEAS -*- mode: org -*-
   - Explain DAG
   - Explain PCA
   - Explain GEE
+  - How to deal with heteroscedasticity in ANOVA
   - Work thro process of how they went from OLS to LME/GEE
   - Compare GEE with mixed (Rmd)
   - How to interpret the results of longit analysis
@@ -83,7 +84,7 @@ BLOG IDEAS -*- mode: org -*-
 ** Misc
   - Doc github pages setup
   - How to bring world together to cooperate and get shit done!
-  - A sci fi book series that discusses what an optimal government
+  - A sci-fi book series that discusses what an optimal government
     should look like, based on psychology, sociology, evolution, and
     evidence.
     
