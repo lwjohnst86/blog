@@ -24,25 +24,23 @@ originally posted [here](/Git-Workflow-Research-Databases/).
 
 # Dataset workflow for team environments #
 
-A brief summary
-([tl;dr](http://www.urbandictionary.com/define.php?term=tl%3Bdr)):
-
-* The components include:
-  - A central/main dataset (in [BitBucket](https://bitbucket.org/) or
-    [GitHub](https://github.com/))
-  - A forked version of the dataset in each members own account
-  - A local version on each members computers
-
-* The actions include:
-  - Pulling from the main dataset (`upstream` remote) into the local
-    version
-  - Pushing (or pulling as well) to the forked dataset (`origin`
-    remote) into (or out of) the local version
-  - Submitting a pull request from the forked dataset to the main
-    dataset and allowing others to comment and/or approve of the pull
-    request
-
-# To expand... #
+> A brief summary
+> ([tl;dr](http://www.urbandictionary.com/define.php?term=tl%3Bdr)):
+> 
+> * The components include:
+>   - A central/main dataset (in [BitBucket](https://bitbucket.org/) or
+>     [GitHub](https://github.com/))
+>   - A forked version of the dataset in each members own account
+>   - A local version on each members computers
+> 
+> * The actions include:
+>   - Pulling from the main dataset (`upstream` remote) into the local
+>     version
+>   - Pushing (or pulling as well) to the forked dataset (`origin`
+>     remote) into (or out of) the local version
+>   - Submitting a pull request from the forked dataset to the main
+>     dataset and allowing others to comment and/or approve of the pull
+>     request
 
 Previously, I thought it would be good to have two branches, the
 `master` and the `dev` branch. However, this was needlessly
@@ -68,14 +66,16 @@ To get to this state, you need to:
    GitHub)
 2. Clone the forked dataset onto your computer, preferably in your 'My
    Documents' or your 'Datasets' folders.  Using the terminal/Git
-   Bash, `cd` into the folder you want to clone the dataset into and:
+   Bash, `cd` into the folder you want to clone the dataset into and
+   copy the link usually provided for the repo on the right/top side
+   in the GitHub/BitBucket site and paste into:
 
-        git clone https://github.com/youraccount/yourforkeddataset.git
+        git clone https://linkfromrepo/youraccount/yourforkeddataset.git
 
 3. Go into the newly cloned `dataset` folder (or whatever name) using
    `cd` and add the `upstream` remote:
 
-        git remote add upstream https://github.com/mainaccount/maindataset.git
+        git remote add upstream https://linkfromrepo/mainaccount/maindataset.git
 
     To keep up-to-date with the main dataset, just run `git pull
     upstream master`.  To push (or pull) to your forked version, use
@@ -112,13 +112,13 @@ comment, so anything after the `##` does nothing in the terminal/Git Bash.
     cd /path/to/your/dataset/folder 
     
     ## Clone the forked dataset
-    git clone https://bitbucket.org/youraccount/yourforkeddataset.git
+    git clone https://linkfromrepo/youraccount/yourforkeddataset.git
     
     ## Move into the new folder
     cd yourforkeddataset 
     
     ## Add the upstream (main dataset) to pull from
-    git remote add upstream https://bitbucket.org/mainaccount/maindataset.git
+    git remote add upstream https://linkfromrepo/mainaccount/maindataset.git
     
     ## Confirm that there are origin and upstream remotes
     git remote -v 
@@ -135,6 +135,6 @@ comment, so anything after the `##` does nothing in the terminal/Git Bash.
     ## Fix any conflicts if need be
     git push origin master
 
-On BitBucket/GitHub, the two things you will need to do is "Fork" and
-"Pull request", that's it.
+On BitBucket/GitHub, the three things you will need to do is "Fork"
+the repo, copy the https link, and use the "Pull request", that's it.
 

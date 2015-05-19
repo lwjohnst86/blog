@@ -95,7 +95,7 @@ I have structured this guide into two parts:
 # Brief step-by-step guide #
 
 1. Develop search terms, using PubMed and MeSH to refine (Include into
-   the `org-mode` `searches.org` file)
+   the org-mode `searches.org` file)
 2. Use the terms in the "Web Search" field in JabRef
 3. Compare and record number of hits between PubMed and JabRef
     - If JabRef's Web Search complains or the hits are different, use
