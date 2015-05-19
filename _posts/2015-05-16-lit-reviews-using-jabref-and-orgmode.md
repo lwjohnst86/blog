@@ -184,20 +184,76 @@ I have structured this guide into two parts:
 
 1. Reading through the article, use org-mode to write up notes and
    comments in the `notes.org` file about the article that may be
-   important for your particular project.
+   important for your particular project.  Using org-mode allows easy
+   text 'folding' (hiding text between headings), which makes
+   navigation and searching easier.
    - Use org-heading level 1 (*) for a keyword specific to the project
      (eg. Diabetes and Exercise).
    - Use org-heading level 2 (**) for the author and year
      (eg. Smith2015).
+
+   Example file:
+
+        #+TITLE: Note taking for reading journal articles
+        #+AUTHOR: Luke W. Johnston
+        
+        A keyword relating to the main objective/project should be used for
+        the first heading (*), for instance 'Project: FA and Diabetes'.
+
+        Each bibkey (AuthorYear, eg. Johnston2013) should have it's own header
+        (* or **).
+        
+        * Project: FA and Diabetes
+        ** Smith2015
+        Comments on article
+        
+        ** Cameron2012
+        Comments on article
+        
 2. Once finished reading the article, make a note that it has been
    read in the JabRef file under the 'Review' tab.
 3. Go into the `tables.org` and make a new row in the org-table.
    Record some simple, but important, aspects of the article so that
-   it is easier to quickly scan the articles you've read.
+   it is easier to quickly scan the articles you've read.  Creating
+   tables in org-mode is very easy (much is done for you), and these
+   tables can be exported into markdown, LaTeX, pdf, docx, etc, which
+   makes this a very useful feature of org-mode.
    - Use org-heading level 1 (*) for a keyword specific to the
      project (eg. Cardiovascular disease and diet).
    - Use org-heading level 2 (**) to describe the table within
      (eg. 'Study methods' or 'Findings' or 'Model covariates').
+
+   Example file:
+
+        #+TITLE: 
+        #+AUTHOR: 
+        #+DATE: 
+        #+OPTIONS: toc:nil
+        #+LaTeX_CLASS_OPTIONS: [landscape, 9pt, letterpaper]
+        #+LaTeX_HEADER:\usepackage[margin=0.50in]{geometry}
+        #+LaTeX_HEADER:\usepackage{booktabs}
+        
+        # NOTE: This file is for creating summary tables from reviewing the
+        # literature, to put them into a more easily digested format. 
+        
+        # A keyword relating to the main objective/project should be used for
+        # the first heading (*), for instance 'Project: FA and Diabetes'.
+        
+        # Further keywords as sub-headings can be used to describe the table
+        # within.
+
+        * Project: FA and Diabetes
+        
+        ** Study summary
+        
+        #+ATTR_LATEX: :center :booktabs :rmlines
+        | Author | Year | Design | Country |   N | Outcome  | Exposure   |
+        |--------+------+--------+---------+-----+----------+------------|
+        | Smith  | 2015 | X-sec  | Canada  | 100 | Diabetes | Fatty acid |
+        |        |      |        |         |     |          |            |
+
+    The LaTeX org-mode tags are used when telling org-mode to create a
+    pdf of the tables.
 
 # Final comments #
 
