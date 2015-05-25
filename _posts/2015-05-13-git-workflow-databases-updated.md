@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Git workflow for research databases: Updated"
+title: "Git workflow for research databases: Remotes and forks"
 tags:
     - organization
     - git
