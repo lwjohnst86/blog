@@ -1,0 +1,273 @@
+---
+layout: post
+title: "Loops and Forests: Running and presenting multiple tests of
+    linear regression"
+tags:
+    - Statistics
+    - Loops
+    - Forest plot
+    - Regression
+    - Multiple tests
+    - R Markdown
+    - R
+    - Practice worksheet
+category:
+    - Statistics
+...
+
+If you do any type of data-heavy work, you likely have had to run many
+tests of a regression.  As the number of response and explanatory
+variables increases, the number of potential combinations of course
+also increases.  There is no way you are going to type out dozens of
+different regressions... You also have the challenge of presenting
+this much information.  In this post, I'm going to go over a way to
+loop through each of the possible combinations.  I'm also going to
+advocate that any time that many results of the same test are shown,
+that the tabular format for these results is probably the absolute
+worst way to show your data... and that plots, in particular a
+modified forest plot, are the best way to present your data.  In both
+the loop and the forest plot case, I've created several functions to
+carry out this task for a generalized estimating equations analysis on
+my
+[GitHub `rstatsToolkit` package](https://github.com/lwjohnst86/rstatsToolkit)
+with an example found on the
+[`plotForest` function example section](https://github.com/lwjohnst86/rstatsToolkit/blob/master/R/plotForest.R)
+
+# Setup: Load the necessary packages and set up data #
+
+Load up the incredibly useful
+[`dplyr`](https://github.com/hadley/dplyr) and
+[`ggplot2`](http://ggplot2.org/) packages.  `dplyr`, via the
+[`magrittr`](https://github.com/smbache/magrittr) package, allows us
+to use the `%>%` pipe command, which is so absolutely amazing, I don't
+know why this type of command wasn't made sooner!
+
+```{r libraries, message = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+library(broom)
+library(tidyr)
+
+```
+
+Let's create a fake dataset to play with and assign it a `tbl` class
+via the `tbl_df()` command.  A `tbl` and `tbl_df` class makes the
+printing nicer, so that not all the data is printed.
+
+```{r assignData}
+
+df <- data.frame(matrix(runif(200*26), ncol = 26)) %>%
+  tbl_df %>%
+  ## Rename columns above 21 to be Y instead of X
+  setNames(., gsub('X(2[1-6])', 'Y\\1', names(.))) %>%
+  mutate(Y21 = Y21 * X1,
+         Y24 = Y24^X4,
+         Y26 = Y26 + (X5 * X7 * X19),
+         Y22 = Y22^(X12 + X14)) %>%
+  mutate_each(funs(as.numeric(scale(.))))
+
+```
+
+I've made some of the response variables purposefully related to the
+explanatory variables so that there are at least some statistically
+significant associations.  You'll also notice that I've scaled (mean
+centered and standardized) all the variables as this will allow the
+regression results to be comparable across tests.  This is especially
+important when showing them on a forest plot.
+
+# TODO list for running and plotting many regressions: #
+
+Before we begin, it's good to list out what exactly needs to be done
+in order to get the end result.  So:
+
+1. Create some way to allow each combination of the 20 by 6 variables
+2. Apply the regression to each combination
+3. Extract only the relevant values from the regressions
+4. Send the output data to ggplot as a forest plot
+
+# 1. Creating either a formula list or wrangle the data #
+
+There are two (probably more) ways that we could run a regression on
+each combination of response and explanatory variable.  The first is
+to create a list of formulas for each combination.
+
+```{r createFormulaList}
+
+response <- grep('Y', names(df), value = TRUE)
+explanatory <- grep('X', names(df), value = TRUE)
+formulaList <- expand.grid(dep = response, indep = explanatory) %>%
+  with(., Map(function(y, x) as.formula(paste(y, '~', x)), dep, indep))
+
+head(formulaList, 3)
+
+```
+
+You can see that this creates a list of formulas, which can then be
+passed into a regression.  However, another way to run a regression on
+all combinations is to use the `gather` function from the
+[`tidyr`](https://github.com/hadley/tidyr) package.  This converts the
+dataframe into a format that allows a regression to run on groups of
+the response and explanatory variables.  I really like this method
+(having only recently discovered it) as you can operate on the data
+directly, rather then through the formula list.
+
+```{r wrangleData}
+
+prep.df <- df %>%
+  gather(Indep, Xvalue, X1:X20) %>% ## To get a explanatory column
+  gather(Dep, Yvalue, Y21:Y26) ## To get a response column
+
+head(prep.df)
+
+```
+
+# 2. Apply a regression to each combination #
+
+So now we have the formula list or the data in the format needed for
+next processing.  First, let's do the regression on the formula list.
+Here I use the `tidy` function from the
+[`broom`](https://github.com/dgrtwo/broom) package, which basically
+tidies up the regression output to make it cleaner and easier to work
+with.
+
+```{r regressionLoop1}
+
+datafit1 <- lapply(formulaList, function(x) lm(x, data = df) %>%
+         broom::tidy(., conf.int = TRUE, data = df))
+
+head(datafit1, 2)
+
+```
+
+This output is still in a list format, so it will evenutally need to
+be unlisted.  Alright, let's try it with the wrangled data.
+
+```{r regressionLoop2}
+
+datafit2 <- prep.df %>%
+  group_by(Dep, Indep) %>%
+  do(lm(Yvalue ~ Xvalue, data = .) %>%
+       broom::tidy(., conf.int = TRUE, data = .))
+
+head(datafit2)
+
+```
+
+In this case, the command above uses the `do` function from the
+[`dplyr`](https://github.com/hadley/dplyr) package, which let's me run
+the regression on each 'group'.  Compared to using the formula list,
+this approach is much nicer in that you don't have to unlist the
+output, it's cleaner and easier to read, and also includes the `Dep`
+and `Indep` variable names.  Because of these reasons (and because it
+is a bit frustrating to try to wrangle the formula list approach into
+a format that is useable), I'm going to continue with using the
+`dplyr` + `tidyr` approach.
+
+# 3. Extract the relevant information #
+
+At this point, it is fairly trivial to subset the data and add any
+relevant variables to this output dataset.  Given I only want the
+`Indep` variable regression information, let's filter the dataset down.
+
+```{r extractInfo}
+
+datafit.subset <- datafit2 %>%
+  filter(term == 'Xvalue')
+
+head(datafit.subset)
+
+```
+
+Ok, so it's in a good format to be plotted.  *However*, there is
+something I want to include in the plot.  To help make the
+visualization easier and quicker to interpret, I want to make the
+regression results on the plot *bigger* as the significance becomes
+*stronger*.  So, I need to create a new variable that represents the
+levels of significance for each regression.
+
+```{r createFactorPvalCol}
+
+datafit.plot <- datafit.subset %>%
+  mutate(f.pvalue = cut(p.value, breaks = c(-Inf, 0.001, 0.01, 0.05, Inf),
+                        labels = c('<0.001', '<0.01', '<0.05', '>0.05'),
+                        ordered_result = TRUE) %>%
+           factor(., levels = rev(levels(.))))
+
+summary(datafit.plot$f.pvalue)
+
+```
+
+The summary of the levels of significance show mostly non-significance
+(which is expected given the dataset is random), but since I made some
+of the variables purposefully related, there is some significant
+associations.  We can now pass this dataset into the forest plot.
+
+# 4. Make a forest plot of the regression output #
+
+I chose using a forest plot because it is a perfect plot to represent
+results with a confidence band, especially when used to compare across
+multiple tests.  I use the incredible
+[`ggplot2`](https://github.com/hadley/ggplot2) to make the forest
+plot.  While this part takes the most amount of code, it is simple
+code for specifying the elements of the plot.
+
+```{r forestPlot, fig.height = 8, fig.width = 10, dpi = 150, fig.cap = 'Forest plot showing regression results of each combination of response and explanatory variable.'}
+
+forestplot <- datafit.plot %>%
+  ggplot(., aes(estimate, Indep)) +
+  geom_errorbarh(aes(xmin = conf.low,
+                     xmax = conf.high,
+                     alpha = f.pvalue,
+                     height = 0)) +
+  geom_vline(xintercept = 0, linetype = 'dashed') +
+  geom_point(aes(size = f.pvalue,
+                 alpha = f.pvalue)) +
+  scale_alpha_discrete(name = 'P-value') +
+  scale_size_discrete(name = 'P-value') +
+  facet_wrap(~ Dep, ncol = 3) +
+  theme_bw(14) +
+  labs(y = 'Explanatory (aka predictor) variables',
+       x = 'Standardized beta-coefficients\nwith 95% confidence intervals')
+
+print(forestplot)
+
+```
+
+And there you go!  A forest plot, with dots that increase in size and
+opacity as the statistical significance increases.
+
+Visualizations should be used more often to represent results from
+scientific research.  I think that, in general, results should
+*almost* always be shown visually, and especially when many regression
+(or other tests) are run.  Forest plots in particular should be used
+for presenting regression results rather than in the table format.
+The main reasons being:
+
+* A forest plot is a perfect plot device to be able to compare
+  regression results across variables.
+* Given that the beta coefficient *with* the confidence interval is
+  presented, the magnitude of an association and the *uncertainty*
+  that the beta coefficient may represent the population estimate can
+  be quickly inferred and compared across regressions.  Text is a very
+  poor tool to being able to evaluate the magnitude of an association
+  *in comparison to other test results*.
+* When many statistical tests are run, there is the concern for false
+  positives.  Because of the visualization of the confidence intervals
+  and the size of the lines and dots depicting higher statistical
+  significance, you can determine whether an association is a false
+  positive *better* than when showing in a table.  For instance, when
+  confidence intervals are very wide and close to the line, this
+  likely means a false positive.
+* Humans are visual by nature.  Text in tabular format is difficult
+  and cumbersome to work through and understand.  Making a forest plot
+  is being considerate to the reader and reviewer of the research.
+  Scientists are busy people and the general public doesn't always
+  know how to interpret scientific results.
+
+The more work you as the researcher put into making your results
+visually easy to interpret and understand, the better it will be for
+you and for your audience!
+
+I hope this post helps others work better present their results!
