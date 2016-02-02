@@ -46,6 +46,9 @@ BLOG IDEAS -*- mode: org -*-
   - Work thro process of how they went from OLS to LME/GEE
   - Compare GEE with mixed (Rmd)
   - How to interpret the results of longit analysis
+  - Understanding controling/confounding/adjusting
+  - Comparing p-values and adjusting using FDR (plot of raw vs
+    adjusted, for random data vs real data with actual effects)
 
 ** Research workflow
 
