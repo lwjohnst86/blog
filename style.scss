@@ -18,8 +18,8 @@ html {
 }
 
 body {
-	background: $white;
-  font: 16px/1.4 $helvetica;
+  background: $white;
+  font: 14px/1.4 $helvetica;
   color: $darkGray;
 }
 
@@ -45,22 +45,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 24px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 24px;
-}
-
-h3 {
   font-size: 20px;
 }
 
+h3 {
+  font-size: 16px;
+}
+
 h4 {
-  font-size: 18px;
+  font-size: 14px;
   color: $gray;
 }
 
@@ -285,5 +285,5 @@ footer {
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "highlights";
+//@import "highlights";
 @import "svg-icons";
