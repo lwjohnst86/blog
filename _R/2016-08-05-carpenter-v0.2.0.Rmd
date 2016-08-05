@@ -1,0 +1,134 @@
+---
+layout: post
+title: "Building tables using the carpenter R package"
+category:
+    - R
+tag:
+    - R
+    - Packages
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>"
+)
+```
+
+In biomedical research, there are certain types of tables that are often 
+included in the article. For instance, some basic statistics between the treatment
+and control group. Or maybe it is between males and females, before and after an
+intervention, and so on. Often these tables are a hassle to create and are prone to
+needing updates based on slight changes in the data or from reviewer comments.
+I can't stand doing these repetitive and simple tasks by hand, so I designed
+carpenter to make creating these tables easily.
+
+## Using carpenter and building a table
+
+The underlying design principal for carpenter is that you create an outline of
+what the table should look like before finally creating the table. This is how
+carpenters also work: they sketch what the product will look like before
+actually starting to build anything. There are four 'outlining' functions,
+several carpenter statistics functions, and one final 'building' function:
+
+- `outline_table()` starts the outlining process.
+- `add_rows()` adds variables to the row or rows with associated descriptive
+statistics.
+- `stat_*()` type statistic functions to be used with `add_rows()` (a list of
+available statistics can be found using `?carpenter::table_stats`).
+- `renaming()` for customizing the naming of the rows and table headers.
+- `build-table()` for finally building the table (uses the
+[`pander`](http://rapporter.github.io/pander/) package).
+
+These functions are chained together using the wonderful 
+[magrittr](https://cran.r-project.org/package=magrittr) `%>%` pipe. If you've
+never used this package or the pipe, take a look at the vignette on introducing
+it. So, let's do some coding:
+
+```{r}
+library(magrittr)
+library(carpenter)
+head(iris)
+outline_table(iris, 'Species') 
+```
+
+You'll notice that the `outline_table` function returned a `tibble` of 0 rows
+and 0 columns. That's because we haven't added anything else to the table!
+carpenter is waiting for more information. So we add rows by:
+
+```{r}
+outline_table(iris, 'Species') %>% 
+    add_rows('Sepal.Length', stat_meanSD) 
+```
+
+You see it has now added a row to the table. Adding more rows:
+
+```{r}
+outline_table(iris, 'Species') %>% 
+    add_rows(c('Sepal.Length', 'Petal.Length'), stat_meanSD) %>%
+    add_rows('Sepal.Width', stat_medianIQR) 
+```
+
+See how this can make creating these tables very easy. Let's remove the `.` from
+the row names and fix up the table header names:
+
+```{r}
+tab <- outline_table(iris, 'Species') %>% 
+    add_rows(c('Sepal.Length', 'Petal.Length'), stat_meanSD) %>%
+    add_rows('Sepal.Width', stat_medianIQR)  %>% 
+    renaming('header', c('Measures', 'Setosa', 'Versicolor', 'Virginica')) %>% 
+    renaming('rows', function(x) gsub('\\.', ' ', x))
+tab
+```
+
+And finally build the table into a Markdown format for easy insertion into 
+[R Markdown documents](http://rmarkdown.rstudio.com/):
+
+```{r}
+build_table(tab)
+```
+
+If you have factor/discrete data, you can even use include these variables:
+
+```{r, message=FALSE}
+library(dplyr)
+mtcars %>% 
+    mutate(
+        gear = as.factor(gear),
+        vs = as.factor(vs)
+    ) %>% 
+    outline_table('vs') %>% 
+    add_rows('mpg', stat_meanSD) %>%
+    add_rows('drat', stat_medianIQR) %>% 
+    add_rows('gear', stat_nPct) %>% 
+    renaming('header', c('Measures', 'V-engine', 'Straight engine')) %>% 
+    renaming('rows', function(x) x %>% 
+                 gsub('drat', 'Read axle ratio', .) %>% 
+                 gsub('mpg', 'Miles/gallon', .) %>% 
+                 gsub('gear', 'Number of gears', .)) %>% 
+    build_table()
+```
+
+Pretty easy eh?
+
+Sometimes, though, you don't need to compare multiple columns, but instead need
+to only show one column. Easy, just don't include a header in the
+`outline_table()`!
+
+```{r}
+iris %>% 
+    outline_table() %>% 
+    add_rows('Sepal.Length', stat_meanSD) %>%
+    add_rows('Sepal.Width', stat_medianIQR) %>% 
+    renaming('header', c('Measures', 'Values')) %>% 
+    build_table() 
+```
+
+> Note: This is a slightly modified version of the introduction vignette for
+carpenter
+([`vignette('carpenter')`](https://htmlpreview.github.io/?https://github.com/lwjohnst86/carpenter/blob/master/vignettes/carpenter.html)
+from version `r packageVersion('carpenter')`). Presently, carpenter only creates
+tables that you would typically see as the 'basic characteristics' or
+'descriptive statistics' table in most biomedical articles. The plan is to
+include other common table structures, but they haven't been implemented yet. If
+you have any suggestions, let me know as an
+[Issue](https://github.com/lwjohnst86/carpenter/issues/new)!

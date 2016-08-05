@@ -1,0 +1,140 @@
+---
+layout: post
+title: "Statistical analysis construction: The mason R package"
+category:
+    - R
+tag:
+    - R
+    - Packages
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Most analyses follow a similar pattern to how construction/engineering projects
+are developed: design -> add specifications -> construction -> (optional) add to
+the design and specs and continue construction -> cleaning, scrubbing, and
+polishing. I created the `mason` package to try to emulate this process and make
+it easier to do analyses in a consistent and 'tidy' format.
+
+## Basic command flow
+
+The general command flow for using `mason` is:
+
+1. Start the design of a blueprint for the analysis by specifying which
+statistical technique to use in your analysis (`design()`).
+2. Add settings/options to the blueprint for the methods of the statistics
+(`add_settings()`).
+3. Add the variables you want to run the statistics on (`add_variables()`).
+These variables include the $y$ variables (outcomes), the $x$ variables
+(predictors), covariates, and interaction variables.
+4. Using the blueprint, construct the 'mason project' (stats analysis) so that
+the results are generated (`construct()`).
+5. Sometimes analyses are too big for one first pass, from blueprint to
+construction, and needs to add more to the blueprint. Use `add_variables()` or
+`add_settings()` after the `construct()` to add to the existing
+results.
+6. When you are ready, make the 'mason project' cleaned up by scrubbing it down
+and polishing it up (`scrub()` and `polish_*()` commands). The results are now
+ready for further presentation in a figure or table!
+
+### Example usage
+
+Let's go over an example analysis. We'll use `glm` for a simple linear
+regression. Let's use the built-in `swiss` dataset. A quick peek at it shows:
+
+```{r peekSwiss}
+head(swiss)
+```
+
+Ok, let's say we want to several models. We are interested in `Fertility` and
+`Infant.Mortality` as outcomes and `Education` and `Agriculture` as potential
+predictors. We also want to control for `Catholic`. This setup means we have
+four potential models to analyze. With mason this is relatively easy. Analyses
+in mason are essentially separated into a blueprint phase and a construction
+phase. Since any structure or building always needs a blueprint, let's get that
+started.
+
+```{r blueprintDesign}
+library(mason)
+design(swiss, 'glm')
+```
+
+So far, all we've done is created a blueprint of the analysis, but it doesn't
+contain much. Let's add some settings to the blueprint. mason was designed to
+make use of the `%>%` pipes from the package `magrittr` (also found in `dplyr`),
+so let's load up `magrittr`!
+
+```{r settings_vars}
+library(magrittr)
+dp <- design(swiss, 'glm') %>% 
+    add_settings(family = gaussian()) %>% 
+    add_variables('yvars', c('Fertility', 'Infant.Mortality')) %>% 
+    add_variables('xvars', c('Education', 'Agriculture'))
+dp
+```
+
+You'll notice that each time, the only thing that is printed to the console is
+the dataset. That's because we haven't constructed the analysis yet! We are
+still in the blueprint phase, so nothing new has been added! Since we have two
+outcomes and two predictors, we have a total of four models to analysis.
+Normally we would need to run each of the models separately. However, if we simply
+list the outcomes and the predictors in mason, it will compute a model for each
+combination! Next, we can construct the analysis using `construct()`.
+
+```{r construct}
+dp <- construct(dp)
+dp
+```
+
+Cool! This is the unadjusted model, without any covariates. We said we wanted to
+adjust for `Catholic`. But let's say we want to keep the unadjusted analysis
+too. Since we have 'finished' the analysis by cleaning it up, we can still add
+to the blueprint.
+
+```{r constructCovar}
+dp2 <- dp %>%
+    add_variables('covariates', 'Catholic') %>% 
+    construct()
+dp2
+```
+
+We now have two models in the results. We're happy with them, so let's clean it
+up using the `scrub()` function. 
+
+```{r scrub}
+dp_clean <- dp2 %>% 
+    scrub()
+```
+
+All `scrub()` does is remove any extra specs in the attributes and sets the
+results as the main dataset. We can put it all as a single pipe chain:
+
+```{r one_go}
+swiss %>% 
+    design('glm') %>% 
+    add_settings() %>% 
+    add_variables('yvars', c('Fertility', 'Infant.Mortality')) %>% 
+    add_variables('xvars', c('Education', 'Agriculture')) %>% 
+    construct() %>% 
+    add_variables('covariates', 'Catholic') %>% 
+    construct() %>% 
+    scrub()
+```
+
+There are also additional `polish_*` type commands that are more or less simply
+wrappers around commands that you may do on the results dataset, like filtering
+or renaming. The list of polish commands can be found in `?mason::polish`.
+
+> Note: This is a slightly modified version of the introduction vignette for
+mason
+([`vignette('mason')`](https://htmlpreview.github.io/?https://github.com/lwjohnst86/mason/blob/master/vignettes/mason.html)
+from version `r packageVersion('mason')`). I also created this package to make
+my analyses easier. So most of the statistics that have been implemented were chosen
+because that's what I use. If you would like a particular statistical method
+included, please fill out an [Issue](https://github.com/lwjohnst86/mason/issues)
+and I will try to implement it!
