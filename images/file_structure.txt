@@ -1,0 +1,18 @@
+.
+├── R
+│   ├── fetch_data.R
+│   ├── functions.R
+│   ├── load_data.R
+│   └── setup.R
+├── doc
+│   └── manuscript.Rmd
+├── vignettes
+│   └── extra-analyses.Rmd
+├── .Rbuildignore
+├── .gitignore
+├── DESCRIPTION
+├── ManuscriptName.Rproj
+├── NAMESPACE
+└── README.md
+
+3 directories, 12 files
