@@ -27,5 +27,5 @@ posts_to_update <- function(draft) {
 rename_to_post <- function(draft)
     paste0("_posts/", sub(".Rmd$", ".md", basename(draft)))
 
-drafts <- list.files("_drafts", pattern = "*.Rmd", full.names = TRUE)
+drafts <- list.files("_R", pattern = "*.Rmd", full.names = TRUE)
 sapply(posts_to_update(drafts), KnitPost)
