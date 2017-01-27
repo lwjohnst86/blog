@@ -31,7 +31,7 @@ to me (e.g. the music playlist, since not everyone uses music to help them work)
 - Limit the number of open applications/programs.
 - Restrict non-work related Internet usage.
 - Put (almost) everything into tasks (A, B, C, D) on your TODO list.
-- Schedule your week early on and chunk time blocks on specific tasks.
+- Schedule your week early on and chunk time blocks (~5.5hrs/day) on specific tasks.
 - Take breaks! Move during those breaks!
 - Use a playlist or radio for music for continuous music listening.
 
@@ -90,13 +90,20 @@ categorized into at least four groups and completing them in order.
 - (C) = important, not urgent
 - (D) = not important, not urgent
 
-Lastly, take breaks and move. Moving helps to relax the mind and energizes the 
-muscles. It also prevents you from getting too exhausted. I've found a 20 minute
-break every 1.5 hours to work for me, with 30 sec eye break every 30 minutes 
-(your eyes can get very tired from staring at the screen). Try using an 
-application that forces you to take a break (I use 
-[Workrave](http://www.workrave.org/) because it locks my screen, forcing me to 
-take a break).
+Lastly, try to keep a strict or narrow time window for working and take breaks
+to move around. When scheduling tasks and work, try to keep within ~5.5hrs/day
+of actual productive work (not including breaks etc). I've found that more than
+this does not make me any more productive and actually ends up wasting my time
+since I just daze off or get easily distracted. Try to work the set hours, then
+get the hell away from your work! You need a fresh and energized mind when doing
+research... working longer hours does not allow that to happen. Taking breaks
+also helps to keep your mind fresh and aware, and moving helps to relax the mind
+and energizes the muscles. It also prevents you from getting too exhausted. I've
+found a 20 minute break every 1.5 hours (or 10 min every hour) to work for me,
+with 30 sec eye break every 30 minutes (your eyes can get very tired from
+staring at the screen). Try using an application that forces you to take a break
+(I use [Workrave](http://www.workrave.org/) because it locks my screen, forcing
+me to take a break).
 
 I often forget about these daily routines, so it may be a good idea to print off
 your daily routine to remind yourself.
